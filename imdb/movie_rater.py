@@ -68,6 +68,6 @@ def json_parser(movie):
     m_actor = get_actors_name(soup)
     keywords = [m_name, m_rate, m_director, m_writer, m_actor]
     json_data = {}
-    for index in range(len(attributes)): 
+    for index in range(len(attributes)):
         json_data[attributes[index]] = keywords[index]
     return json.dumps(json_data)
