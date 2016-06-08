@@ -60,16 +60,14 @@ def get_directors_name(soup):
 
 def json_parser(movie):
     soup = get_soup(movie)
+    attributes = ['movie', 'rate', 'director', 'writer', 'actor']
     m_name = get_movie_name(soup)
     m_rate = get_movie_rate(soup)
     m_director = get_directors_name(soup)
     m_writer = get_writers_name(soup)
     m_actor = get_actors_name(soup)
-
-    json_data = []
-    json_data.append({'movie': m_name})
-    json_data.append({'rate': m_rate})
-    json_data.append({'director': m_director})
-    json_data.append({'writer': m_writer})
-    json_data.append({'actor': m_actor})
+    keywords = [m_name, m_rate, m_director, m_writer, m_actor]
+    json_data = {}
+    for index in range(len(attributes)): 
+        json_data[attributes[index]] = keywords[index]
     return json.dumps(json_data)
