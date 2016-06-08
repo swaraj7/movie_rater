@@ -60,6 +60,7 @@ def get_directors_name(soup):
 
 def json_parser(movie):
     soup = get_soup(movie)
+    if movie ==""
     attributes = ['movie', 'rate', 'director', 'writer', 'actor']
     m_name = get_movie_name(soup)
     m_rate = get_movie_rate(soup)
