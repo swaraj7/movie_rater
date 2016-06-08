@@ -15,7 +15,6 @@ def display_all_names(soup, item):
   return str1
 
 def get_soup(movie):
-  print movie
   movie_search = '+'.join(movie.split())
   url = "http://www.imdb.com/find?q="+ movie_search +"&s=all"
   print url
@@ -36,20 +35,20 @@ def get_movie_name(soup):
   return movie_title
 
 def get_movie_rate(soup):
-  rate = soup.find('span',itemprop='ratingValue')
+  rate = soup.find('span', itemprop='ratingValue')
   rating = str(rate.contents[0])
   return rating
 
 def get_writers_name(soup):
-  writers = display_all_names(soup, "creator")
+  writers = display_all_names(soup,"creator")
   return writers
  
 def get_actors_name(soup):
-  actors = display_all_names(soup, "actors")
+  actors = display_all_names(soup,"actors")
   return actors
 
 def get_directors_name(soup):
-  directors = display_all_names(soup, "director")
+  directors = display_all_names(soup,"director")
   return directors
 
 def json_parser(movie):
@@ -62,13 +61,8 @@ def json_parser(movie):
 
   json_data = []
   json_data.append({'movie':m_name})
-  json_data.append({'year':m_year})
   json_data.append({'rate':m_rate})
   json_data.append({'director':m_director})
   json_data.append({'writer':m_writer})
   json_data.append({'actor':m_actor})
   return json.dumps(json_data)
-
-if __name__ == '__main__':
-  main
-  
