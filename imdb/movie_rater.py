@@ -61,7 +61,7 @@ def json_parser(movie):
     soup = get_soup(movie)
     json_data = {}
     if soup == "error":
-        json_data[error] = "page not found"
+        json_data["error"] = "page not found"
         return json.dumps(json_data)
     else:
         soup = BeautifulSoup(soup)
