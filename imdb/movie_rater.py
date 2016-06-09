@@ -32,28 +32,43 @@ def get_soup(movie):
 
 
 def get_movie_name(soup):
-    movie_title = soup.find('title').contents[0]
+    try:
+        movie_title = soup.find('title').contents[0]
+    except:
+        movie_title = "N/A"
     return movie_title
 
 
 def get_movie_rate(soup):
-    rate = soup.find('span', itemprop='ratingValue')
-    rating = str(rate.contents[0])
+    try:
+        rate = soup.find('span', itemprop='ratingValue')
+        rating = str(rate.contents[0])
+    except:
+        rating = "N/A"
     return rating
 
 
 def get_writers_name(soup):
-    writers = display_all_names(soup, "creator")
+    try:
+        writers = display_all_names(soup, "creator")
+    except:
+        writers = "N/A"
     return writers
 
 
 def get_actors_name(soup):
-    actors = display_all_names(soup, "actors")
+    try:
+        actors = display_all_names(soup, "actors")
+    except:
+        actors = "N/A"
     return actors
 
 
 def get_directors_name(soup):
-    directors = display_all_names(soup, "director")
+    try:
+        directors = display_all_names(soup, "director")
+    except:
+        directors = "N/A"
     return directors
 
 
