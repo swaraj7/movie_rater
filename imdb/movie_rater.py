@@ -72,7 +72,7 @@ def get_directors_name(soup):
     return directors
 
 
-def json_parser(movie):
+def get_movie_info(movie):
     soup = get_soup(movie)
     json_data = {}
     if soup == "error":
