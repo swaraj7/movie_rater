@@ -25,11 +25,10 @@ def get_soup(movie):
         link = br.find_link(url_regex=re.compile(r'/title/tt.*'))
         res = br.follow_link(link)
     except:
-        print "wrong movie name"
-        return ""
+        return "error"
     else:
         soup = BeautifulSoup(res.read())
-        return soup
+        return str(soup)
 
 
 def get_movie_name(soup):
@@ -60,15 +59,19 @@ def get_directors_name(soup):
 
 def json_parser(movie):
     soup = get_soup(movie)
-    if movie ==""
-    attributes = ['movie', 'rate', 'director', 'writer', 'actor']
-    m_name = get_movie_name(soup)
-    m_rate = get_movie_rate(soup)
-    m_director = get_directors_name(soup)
-    m_writer = get_writers_name(soup)
-    m_actor = get_actors_name(soup)
-    keywords = [m_name, m_rate, m_director, m_writer, m_actor]
     json_data = {}
-    for index in range(len(attributes)):
-        json_data[attributes[index]] = keywords[index]
-    return json.dumps(json_data)
+    if soup == "error":
+        json_data[error] = "page not found"
+        return json.dumps(json_data)
+    else:
+        soup = BeautifulSoup(soup)
+        attributes = ['movie', 'rate', 'director', 'writer', 'actor']
+        m_name = get_movie_name(soup)
+        m_rate = get_movie_rate(soup)
+        m_director = get_directors_name(soup)
+        m_writer = get_writers_name(soup)
+        m_actor = get_actors_name(soup)
+        keywords = [m_name, m_rate, m_director, m_writer, m_actor]
+        for index in range(len(attributes)):
+            json_data[attributes[index]] = keywords[index]
+        return json.dumps(json_data)
