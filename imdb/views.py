@@ -7,5 +7,5 @@ def index(request):
 
 
 def print_data(request, movie):
-    json_data = movie_rater.json_parser(movie)
-    return HttpResponse(json_data)
+    movie_data = movie_rater.get_movie_info(movie)
+    return HttpResponse(movie_data)
